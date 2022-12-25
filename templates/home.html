@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block base %}
+
+
+    <form action="{% url "create company" %}" method="get">
+        <button id="button">Add Company</button>
+    </form>
+    <br>
+    <div>
+
+    </div>
+    {% if companies.count > 0 %}
+        <form action="{% url "hire employee" %}" method="get">
+            <button id="button">Hire Employee</button>
+        </form>
+    {% endif %}
+    {% if companies.count > 0 %}
+        <table class="styled-table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Logo</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for company in companies %}
+                <tr>
+                    <td>{{ company.name }}</td>
+                    <td><img class="image-logo" src=" {{ company.logo }}"></td>
+                    <td>{{ company.description }}</td>
+                    <td>
+                        <a class="edit" type="button" href="{% url 'view company' pk=company.pk %}">View Company</a>
+                        <a class="fire" type="button" href="{% url 'delete company' pk=company.pk %}">Delete Company </a>
+
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

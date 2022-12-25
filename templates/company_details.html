@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block base %}
+
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of birth</th>
+            <th>Photo</th>
+            <th>Position</th>
+            <th>Month Salary</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for p in people %}
+        <tr>
+            <td>{{ p.first_name }}</td>
+            <td>{{ p.last_name }}</td>
+            <td>{{ p.date_of_birth }}</td>
+            <td><img class="image-logo" src=" {{ p.photo }}"></td>
+            <td>{{ p.position }}</td>
+            <td>{{ p.salary }} $</td>
+        <td>
+                    <a class="fire" type="button" href="{% url 'fire employee' pk=p.pk %}">Fire Employee</a>
+            <a class="edit" type="button" href="{% url 'edit employee' pk=p.pk %}">Edit Employee</a>
+
+                </td>
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}

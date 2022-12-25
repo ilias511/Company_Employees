@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block base %}
+
+
+
+    <fieldset class="create-company">
+        <form method="post" action="{% url "fire employee" employee.pk %}">
+            <h1>Are you sure you want to fire this employee from his company?</h1>
+            {{ form }}
+            {% csrf_token %}
+            <input class="button-post" type="submit" value="Submit">
+        </form>
+    </fieldset>
+
+{% endblock %}
